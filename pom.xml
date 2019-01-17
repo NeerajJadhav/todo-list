@@ -16,6 +16,7 @@
         <lombok>1.18.4</lombok>
         <java.version>11</java.version>
         <servlet-api.version>4.0.1</servlet-api.version>
+        <tomcat-embed-core>8.5.34</tomcat-embed-core>
     </properties>
 
     <dependencies>
@@ -54,9 +55,8 @@
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
-            <version>8.5.31</version>
+            <version>${tomcat-embed-core}</version>
         </dependency>
-
     </dependencies>
 
     <build>
