@@ -1,6 +1,8 @@
 package com.niraj.controller;
 
+import com.niraj.service.DemoService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,18 +13,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class DemoController {
 
-    // http://localhost:8080/todo-list/hello
+    @Autowired
+    private DemoService demoService;
 
     @ResponseBody
     @GetMapping("/hello")
     public String Hello() {
-        return "Hello! <a href='/todo-list/welcome'>Welcome<a>";
+        return demoService.getHelloMessage("Niraj");
     }
 
     // http://localhost:8080/todo-list/welcome
     @GetMapping("welcome")
     public String welcome(Model model) {
-        model.addAttribute("user", "Niraj");
+        model.addAttribute("greetUser", demoService.getHelloMessage("Niraj"));
         log.info("model= {}", model);
 
         /* prefix + name +suffix
@@ -34,6 +37,6 @@ public class DemoController {
     @ModelAttribute("welcomeMessage")
     public String welcomeMessage() {
         log.info("welcomeMessage() called");
-        return "Welcome to this Demo application";
+        return demoService.getWelcomMessage();
     }
 }
